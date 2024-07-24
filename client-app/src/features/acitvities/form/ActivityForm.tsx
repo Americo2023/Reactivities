@@ -6,9 +6,10 @@ interface Props {
     activity: Activity | undefined;
     closeForm: () => void;
     createEdit: (activity: Activity) => void;
+    sudmitting: boolean;
 }
 
-function ActivityForm({ activity: selectedActivity, closeForm, createEdit }: Props) {
+function ActivityForm({ activity: selectedActivity, sudmitting, closeForm, createEdit }: Props) {
     const initialState = selectedActivity ?? {
         id: '',
         title: '',
@@ -54,6 +55,7 @@ function ActivityForm({ activity: selectedActivity, closeForm, createEdit }: Pro
                 />
                 <Form.Input
                     placeholder='Date'
+                    type="date"
                     value={activity.date}
                     name='date'
                     onChange={handleInputChange}
@@ -70,8 +72,8 @@ function ActivityForm({ activity: selectedActivity, closeForm, createEdit }: Pro
                     name='venue'
                     onChange={handleInputChange}
                 />
-                <Button floated="right" positive type="submit" content="Submit" />
-                <Button onClick={closeForm} floated="right" type="submit" content="Cancel" />
+                <Button loading={sudmitting} floated="right" positive type="submit" content="Submit" />
+                <Button  onClick={closeForm} floated="right" type="submit" content="Cancel" />
             </Form>
         </Segment>
     )
