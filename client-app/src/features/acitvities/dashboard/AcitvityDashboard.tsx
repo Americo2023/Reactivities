@@ -1,39 +1,28 @@
 import { Grid } from 'semantic-ui-react'
-import { Activity } from '../../../app/models/acitivty'
 import ActivityList from './ActivityList'
 import ActivityDetails from '../details/ActivityDetails'
 import ActivityForm from '../form/ActivityForm'
+import { useStore } from '../../../app/store/store'
+import { observer } from 'mobx-react-lite'
 
-interface Props {
-    activities: Activity[];
-    selectedActivity: Activity | undefined;
-    selectActivity: (id: string) => void;
-    cancelSelectActivity: () => void;
-    editMode: boolean;
-    openForm: (id: string) => void;
-    closeForm: () => void;
-    createEdit: (activity: Activity) => void;
-    deleteActivity: (id: string) => void;
-    sudmitting: boolean;
-}
 
-function AcitvityDashboard({ activities, selectActivity, sudmitting, 
-    selectedActivity, cancelSelectActivity, editMode, openForm, closeForm, createEdit, deleteActivity }: Props) {
+
+function AcitvityDashboard() {
+    const { activityStore } = useStore();
+    const {selectedActivity, editMode} = activityStore
+    
   return (
       <Grid>
           <Grid.Column width='10'>
-              <ActivityList sudmitting={sudmitting} deleteActivity={deleteActivity} activities={activities} selectActivity={selectActivity} />
+              <ActivityList  />
           </Grid.Column>
           <Grid.Column width='6'>
               {selectedActivity && !editMode &&
-                  <ActivityDetails
-                  activity={selectedActivity}
-                  cancelSelectActivity={cancelSelectActivity}
-                  openForm={openForm}
-              />
+                  <ActivityDetails />
               }
               {editMode && 
-                  <ActivityForm sudmitting={sudmitting} createEdit={createEdit} closeForm={closeForm} activity={selectedActivity} />
+                  <ActivityForm
+              />
               }
               
           </Grid.Column>
@@ -41,4 +30,4 @@ function AcitvityDashboard({ activities, selectActivity, sudmitting,
   )
 }
 
-export default AcitvityDashboard
+export default observer( AcitvityDashboard)
