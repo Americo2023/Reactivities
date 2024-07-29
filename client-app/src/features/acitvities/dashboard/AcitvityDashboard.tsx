@@ -4,6 +4,7 @@ import { useStore } from '../../../app/store/store'
 import { observer } from 'mobx-react-lite'
 import { useEffect } from 'react'
 import Loading from '../../../app/layouts/Loading'
+import ActivityFilters from './ActivityFilter'
 
 function AcitvityDashboard() {
     const { activityStore } = useStore();
@@ -21,15 +22,7 @@ function AcitvityDashboard() {
               <ActivityList  />
           </Grid.Column>
           <Grid.Column width='6'>
-             {/*  {selectedActivity && !editMode &&
-                  <ActivityDetails />
-              }
-              {editMode && 
-                  <ActivityForm
-              />
-              } */}
-              <h2>Acitivty filters</h2>
-              
+              <ActivityFilters />
           </Grid.Column>
     </Grid>
   )
