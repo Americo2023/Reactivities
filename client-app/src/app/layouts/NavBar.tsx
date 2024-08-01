@@ -10,6 +10,7 @@ function NavBar() {
                     Reactivities
                 </MenuItem>
                 <MenuItem name='Acitivties' as={NavLink} to='/activities' />
+                <MenuItem name='Errors' as={NavLink} to='/errors' />
                 <MenuItem>
                     <Button
                         as={NavLink}
