@@ -1,5 +1,6 @@
 ﻿using Application;
 using Domain;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace API.Controllers;
@@ -10,7 +11,7 @@ public class ActivitiesController : BaseApiController
     [HttpGet]
     public async Task<IActionResult> GetActivities()
     {
-        return HandleResult( await Mediator.Send(new List.Query()));
+        return HandleResult(await Mediator.Send(new List.Query()));
     }
 
     [HttpGet("{id}")]
@@ -22,7 +23,7 @@ public class ActivitiesController : BaseApiController
     [HttpPost]
     public async Task<IActionResult> CreateActivity(Activity activity)
     {
-        return HandleResult( await Mediator.Send(new Create.Command { Activity = activity }));
+        return HandleResult(await Mediator.Send(new Create.Command { Activity = activity }));
     }
 
     [HttpPut("{id}")]
